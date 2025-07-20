@@ -16,14 +16,6 @@ console.log(ObjectBall)
 
 // Цикл для мячика
 function updateBallPosition() {
-    // Изменение координат
-    ObjectBall.topIndex += ObjectBall.speedY
-    ObjectBall.leftIndex += ObjectBall.speedX
-
-    // Обновление координат
-    Ball.style.top = `${ObjectBall.topIndex}%`
-    Ball.style.left = `${ObjectBall.leftIndex}%`
-
     // Получение подробных координат
     const ballTop = parseFloat(getComputedStyle(Ball).top)
     const ballBottom = parseFloat(getComputedStyle(Ball).bottom)
@@ -54,9 +46,16 @@ function updateBallPosition() {
     if (ballRight + ObjectBall.size >= racketRight1 && ballLeft + ObjectBall.size >= racketLeft1  && ballTop > racketTop1 && ballBottom > racketBottom1) {
         ObjectBall.speedX *= -1
     }
-    
 
+    // Изменение координат
+    ObjectBall.topIndex += ObjectBall.speedY
+    ObjectBall.leftIndex += ObjectBall.speedX
 
+    // Обновление координат
+    Ball.style.top = `${ObjectBall.topIndex}%`
+    Ball.style.left = `${ObjectBall.leftIndex}%`
+
+   
 
     // Запуск после отрисовки
     requestAnimationFrame(updateBallPosition)
